@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.AI;
 using UnityEngine.AI;
 public class Mover : MonoBehaviour
 {
@@ -10,11 +9,12 @@ public class Mover : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            MoveToCorsor();
+            MoveToCorsor(); //²¾°Ê
         }
-        
+
+        UpdateAnimator(); //°Êµe
     }
         
     private void MoveToCorsor()
@@ -29,6 +29,14 @@ public class Mover : MonoBehaviour
         }
        // lastRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         //GetComponent<NavMeshAgent>().destination = target.position;
+    }
+
+    private void UpdateAnimator()
+    {
+        Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
+        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+        float speed = localVelocity.z;
+        GetComponent<Animator>().SetFloat("ForwardSpeed", speed);
     }
     
 }

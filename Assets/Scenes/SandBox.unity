@@ -1604,7 +1604,7 @@ MonoBehaviour:
   m_TileSize: 256
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
-  m_MinRegionArea: 10
+  m_MinRegionArea: 100
   m_NavMeshData: {fileID: 23800000, guid: f6979840a4d7e824eb716d89e7b8aab9, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &1233924315
@@ -1996,8 +1996,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1712953953}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
+  m_Controller: {fileID: 9100000, guid: 1395121ff5de39a479792b20f3c2913c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2744,27 +2744,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1019577428719945255, guid: 3cc096c80ca660a4694b828401da59d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.90173
+      value: 7.62
       objectReference: {fileID: 0}
     - target: {fileID: 1019577428719945255, guid: 3cc096c80ca660a4694b828401da59d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.097146
+      value: 8.74
       objectReference: {fileID: 0}
     - target: {fileID: 1019577428719945255, guid: 3cc096c80ca660a4694b828401da59d3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.623761
+      value: -7.42
       objectReference: {fileID: 0}
     - target: {fileID: 1571522496170549560, guid: 3cc096c80ca660a4694b828401da59d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1571522496170549560, guid: 3cc096c80ca660a4694b828401da59d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.84
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1571522496170549560, guid: 3cc096c80ca660a4694b828401da59d3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.81
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1571522496170549560, guid: 3cc096c80ca660a4694b828401da59d3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2815,6 +2815,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4756692549797216206, guid: 5c77a67c5d37d4c4c8666e84e992abd0, type: 3}
+      propertyPath: m_BaseOffset
+      value: -0.667
+      objectReference: {fileID: 0}
     - target: {fileID: 5521448865838846321, guid: 5c77a67c5d37d4c4c8666e84e992abd0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
