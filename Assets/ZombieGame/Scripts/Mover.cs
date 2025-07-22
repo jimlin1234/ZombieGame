@@ -4,31 +4,15 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Mover : MonoBehaviour
 {
-    //[SerializeField] Transform target;
-    //Ray lastRay;
-
+   
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            MoveToCorsor(); //²¾°Ê
-        }
-
         UpdateAnimator(); //°Êµe
     }
-        
-    private void MoveToCorsor()
+
+    public void MoveTo(Vector3 destination)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        //Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
-        bool hasHit = Physics.Raycast(ray,out hit);
-        if(hasHit == true)
-        {
-            GetComponent<NavMeshAgent>().destination = hit.point;
-        }
-       // lastRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //GetComponent<NavMeshAgent>().destination = target.position;
+        GetComponent<NavMeshAgent>().destination = destination;
     }
 
     private void UpdateAnimator()
