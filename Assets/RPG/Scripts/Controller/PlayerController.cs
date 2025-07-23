@@ -12,11 +12,19 @@ namespace RPG.Controller
 
         void Update()
         {
-            InteractWithCombat(); //戰鬥
-            InteractWithMovement(); //移動
+            if (InteractWithCombat() == true) //如果在戰鬥(==ture)，則跳出(不會執行移動)
+            {
+                return;
+            }
+
+            if (InteractWithMovement() == true)//移動
+            {
+                return; 
+            }
+            //print("nothing");
         }
 
-        private void InteractWithCombat()  
+        private bool InteractWithCombat()  
         {
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             foreach(RaycastHit hit in hits)
@@ -27,18 +35,30 @@ namespace RPG.Controller
                 if (Input.GetMouseButtonDown(0))
                 {
                     GetComponent<Fighter>().Attack(target);
+                    
                 }
+                return true;
             }
+            return false;
         }
 
-        private void InteractWithMovement() 
+        private bool InteractWithMovement() 
         {
-            if (Input.GetMouseButton(0))
+            Ray ray = GetMouseRay();
+            RaycastHit hit;
+            bool hasHit = Physics.Raycast(ray, out hit);
+            
+            if (hasHit)
             {
-                MoveToCorsor(); //移動
+                if (Input.GetMouseButton(0))
+                {
+                    GetComponent<Mover>().MoveTo(hit.point);
+                }
+                return true;
             }
+            return false;
         }
-
+        /*
         private void MoveToCorsor()
         {
             Ray ray = GetMouseRay();
@@ -46,9 +66,11 @@ namespace RPG.Controller
             bool hasHit = Physics.Raycast(ray, out hit);
             if (hasHit)
             {
+                if(Input.GetMouseButton(0))
                 GetComponent<Mover>().MoveTo(hit.point);
             }
-        }
+            return true;
+        }*/
 
         private static Ray GetMouseRay()
         {
