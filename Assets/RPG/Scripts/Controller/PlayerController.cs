@@ -17,7 +17,7 @@ namespace RPG.Controller
                 return;
             }
 
-            if (InteractWithMovement() == true)//移動
+            if (InteractWithMovement() == true)//如果在移動(==ture)，則跳出(不會執行戰鬥)
             {
                 return; 
             }
@@ -29,8 +29,8 @@ namespace RPG.Controller
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             foreach(RaycastHit hit in hits)
             {
-               CombatTarget target =  hit.transform.GetComponent<CombatTarget>();
-                if(target == null) continue;
+               CombatTarget target =  hit.transform.GetComponent<CombatTarget>(); //擁有CombatTarget組件的hit
+                if (target == null) continue;
 
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -52,7 +52,8 @@ namespace RPG.Controller
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().MoveTo(hit.point);
+                    GetComponent<Mover>().StartMoveAction(hit.point);
+                    
                 }
                 return true;
             }
