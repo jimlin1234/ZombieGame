@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour
+    public class Fighter : MonoBehaviour,IAction
     {
         [SerializeField] float weaponRange = 2f;
         Transform target; //被點擊的目標(身上掛有CombatTarget元件的)
@@ -20,7 +20,7 @@ namespace RPG.Combat
             }
             else
             {
-                GetComponent<Mover>().Stop();
+                GetComponent<Mover>().Cancel();
             }
         }
 
@@ -35,7 +35,9 @@ namespace RPG.Combat
             target = combatTarget.transform;
         }
 
-        public void CancelTarget()
+        
+
+        public void Cancel() //實作IAction介面的Cancel方法
         {
             target = null;
         }

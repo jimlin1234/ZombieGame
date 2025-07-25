@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 namespace RPG.Movement
 {
-    public class Mover : MonoBehaviour
+    public class Mover : MonoBehaviour,IAction
     {
         NavMeshAgent navMeshAgent;
 
@@ -24,7 +24,7 @@ namespace RPG.Movement
         public void StartMoveAction(Vector3 destination)
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            GetComponent<Fighter>().CancelTarget();
+            //GetComponent<Fighter>().Cancel();
             MoveTo(destination);
         }
         public void MoveTo(Vector3 destination)
@@ -33,11 +33,12 @@ namespace RPG.Movement
             navMeshAgent.isStopped = false;
         }
 
-        public void Stop()
+        public void Cancel() //實作IAction介面的Cancel方法
         {
             navMeshAgent.isStopped = true;
         }
 
+        
         private void UpdateAnimator()
         {
             Vector3 velocity = navMeshAgent.velocity;
