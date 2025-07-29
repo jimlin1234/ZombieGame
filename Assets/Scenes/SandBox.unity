@@ -2894,6 +2894,10 @@ PrefabInstance:
       propertyPath: weaponRange
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6543663007054852579, guid: 5c77a67c5d37d4c4c8666e84e992abd0, type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
