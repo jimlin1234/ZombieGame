@@ -58,7 +58,7 @@ namespace RPG.Combat
             return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
         }
 
-        public bool CanAttack(CombatTarget combatTarget)
+        public bool CanAttack(CombatTarget combatTarget)  //CombatTarget combatTarget 為Ray射到的有效敵人(身上有CombatTarget組件的)
         {
             if(combatTarget == null) return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
