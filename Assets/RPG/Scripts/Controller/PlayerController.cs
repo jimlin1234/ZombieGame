@@ -30,7 +30,8 @@ namespace RPG.Controller
             foreach(RaycastHit hit in hits)
             {
                CombatTarget target =  hit.transform.GetComponent<CombatTarget>(); //擁有CombatTarget組件的hit
-                if (target == null) continue;
+                if(target == null) continue;
+                if (GetComponent<Fighter>().CanAttack(target)) continue;
 
                 if (Input.GetMouseButtonDown(0))
                 {
