@@ -34,6 +34,7 @@ namespace RPG.Controller
 
                 if (Input.GetMouseButtonDown(0))
                 {
+                    
                     GetComponent<Fighter>().Attack(target);
                     
                 }
