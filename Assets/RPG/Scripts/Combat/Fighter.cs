@@ -73,7 +73,7 @@ namespace RPG.Combat
         {
             if(combatTarget == null) return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
-            return targetToTest != null && targetToTest.IsDead();
+            return targetToTest != null && !targetToTest.IsDead();
         }
         public void Attack(CombatTarget combatTarget)
         {
