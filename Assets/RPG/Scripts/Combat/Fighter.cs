@@ -51,7 +51,10 @@ namespace RPG.Combat
         //Animation Eent
         void Hit()
         {
-            if (target == null) return;
+            if (target == null)
+            {
+                return;
+            }
             //Health healthComponent = target.GetComponent<Health>();
             target.TakeDamage(weaponDamage);
         }
