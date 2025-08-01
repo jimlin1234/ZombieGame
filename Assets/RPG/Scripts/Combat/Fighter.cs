@@ -33,6 +33,10 @@ namespace RPG.Combat
                 
             }
         }
+        private bool GetIsInRange()
+        {
+            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+        }
 
         private void AttackBehaviour()
         {
@@ -64,18 +68,14 @@ namespace RPG.Combat
             //Health healthComponent = target.GetComponent<Health>();
             target.TakeDamage(weaponDamage);
         }
-        private bool GetIsInRange()
-        {
-            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
-        }
 
-        public bool CanAttack(CombatTarget combatTarget)  //CombatTarget combatTarget 為Ray射到的有效敵人(身上有CombatTarget組件的)
+        public bool CanAttack(GameObject combatTarget)  //CombatTarget combatTarget 為Ray射到的有效敵人(身上有CombatTarget組件的)
         {
             if(combatTarget == null) return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
         }
-        public void Attack(CombatTarget combatTarget)
+        public void Attack(GameObject combatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
