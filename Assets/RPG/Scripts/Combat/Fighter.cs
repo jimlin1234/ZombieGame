@@ -40,14 +40,20 @@ namespace RPG.Combat
             if (timeSinceLastAttack > timeBetweenAttacks)
             {
                 //this will trigger the Hit() event
-                GetComponent<Animator>().ResetTrigger("StopAttack");
-                GetComponent<Animator>().SetTrigger("Attack");
+                TriggerAttack();
                 timeSinceLastAttack = 0;
-                
+
 
             }
-            
+
         }
+
+        private void TriggerAttack()
+        {
+            GetComponent<Animator>().ResetTrigger("StopAttack");
+            GetComponent<Animator>().SetTrigger("Attack");
+        }
+
         //Animation Eent
         void Hit()
         {
@@ -79,11 +85,15 @@ namespace RPG.Combat
 
         public void Cancel() //實作IAction介面的Cancel方法
         {
-            GetComponent<Animator>().ResetTrigger("Attack");
-            GetComponent<Animator>().SetTrigger("StopAttack");
+            TriggerStopAttak();
             target = null;
         }
 
-        
+        private void TriggerStopAttak()
+        {
+            GetComponent<Animator>().ResetTrigger("Attack");
+            GetComponent<Animator>().SetTrigger("StopAttack");
+        }
+
     }
 }
