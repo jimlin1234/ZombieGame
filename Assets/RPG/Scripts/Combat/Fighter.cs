@@ -72,6 +72,7 @@ namespace RPG.Combat
         public bool CanAttack(GameObject combatTarget)  //CombatTarget combatTarget 為Ray射到的有效敵人(身上有CombatTarget組件的)
         {
             if(combatTarget == null) return false;
+            //if(!combatTarget.GetComponent<Health>()) return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
         }
