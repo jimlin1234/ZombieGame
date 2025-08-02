@@ -4,14 +4,23 @@ using UnityEngine;
 using RPG.Movement;
 using System;
 using RPG.Combat;
+using RPG.Core;
 
 namespace RPG.Controller
 {
     public class PlayerController : MonoBehaviour
     {
+        Health health;
+
+        private void Start()
+        {
+            health = GetComponent<Health>();
+        }
 
         void Update()
         {
+            if (health.IsDead()) return; 
+
             if (InteractWithCombat() == true) //如果在戰鬥(==ture)，則跳出(不會執行移動)
             {
                 return;
