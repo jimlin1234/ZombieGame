@@ -55,7 +55,7 @@ namespace RPG.Combat
         private void TriggerAttack()
         {
             GetComponent<Animator>().ResetTrigger("StopAttack");
-            GetComponent<Animator>().SetTrigger("Attack");
+            GetComponent<Animator>().SetTrigger("Attack");  //此動畫將觸發Hit()
         }
 
         //Animation Eent
