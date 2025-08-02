@@ -13,11 +13,11 @@ namespace RPG.Combat
         [SerializeField] float weaponDamage = 5.0f;
 
         Health target; //被點擊的目標(身上掛有Health元件的，每個目標都會有Health)
-        float timeSinceLastAttack = 0;
+        float timeSinceLastAttack = Mathf.Infinity;
         private void Update()
         {
             timeSinceLastAttack = timeSinceLastAttack + Time.deltaTime;
-            
+            print(timeSinceLastAttack);
             if (target == null) return;
 
             if (target.IsDead()) return;
