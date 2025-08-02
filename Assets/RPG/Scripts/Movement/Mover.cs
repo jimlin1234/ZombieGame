@@ -19,7 +19,11 @@ namespace RPG.Movement
 
         void Update()
         {
-            navMeshAgent.enabled = !health.IsDead(); //死亡時關掉navMeshAgent
+            if (health.IsDead())
+            {
+                navMeshAgent.enabled = false; //死亡時關掉navMeshAgent
+            }
+            
             UpdateAnimator(); //動畫
         }
 
