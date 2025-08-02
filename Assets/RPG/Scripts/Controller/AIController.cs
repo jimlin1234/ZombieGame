@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace RPG.Controller
 {
+    //Enemy Controller
     public class AIController : MonoBehaviour
     {
         [SerializeField] float chaseDistance = 5.0f; //敵人開始追擊player的距離
