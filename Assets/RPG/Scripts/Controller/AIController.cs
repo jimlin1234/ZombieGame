@@ -20,7 +20,7 @@ namespace RPG.Controller
         private void Update()
         {
             
-            if (DistanceToPlayer(player) < chaseDistance && fighter.CanAttack(player))
+            if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
             {
                 fighter.Attack(player);
             }
@@ -30,10 +30,11 @@ namespace RPG.Controller
             }
         }
 
-        private float DistanceToPlayer(GameObject player)
+        private bool InAttackRangeOfPlayer()
         {
-            //GameObject player = GameObject.FindWithTag("Player");
-            return Vector3.Distance(player.transform.position, transform.position);
+            
+            float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+            return distanceToPlayer < chaseDistance;
         }
     }
 }
