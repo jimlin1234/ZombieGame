@@ -78,7 +78,7 @@ namespace RPG.Combat
         }
         public void Attack(GameObject combatTarget)  //由PlayerController 或 AIController呼叫
         {
-            GetComponent<ActionScheduler>().StartAction(this);
+            GetComponent<ActionScheduler>().StartAction(this); //告訴ActionScheduler this現在的動作
             target = combatTarget.GetComponent<Health>();
         }
 
