@@ -8,7 +8,7 @@ namespace RPG.Combat
 {
     public class Fighter : MonoBehaviour,IAction
     {
-        [SerializeField] float weaponRange = 2f;
+        [SerializeField] float weaponRange = 2f; //進入攻擊範圍
         [SerializeField] float timeBetweenAttacks = 1.0f;
         [SerializeField] float weaponDamage = 5.0f;
 
@@ -22,18 +22,18 @@ namespace RPG.Combat
 
             if (target.IsDead()) return;
                 //bool isInRange = GetIsInRange();
-            if (!GetIsInRange())
+            if (!GetIsInRange()) //未進入攻擊範圍
             {
-                GetComponent<Mover>().MoveTo(target.transform.position);
+                GetComponent<Mover>().MoveTo(target.transform.position);  //繼續往目標移動
             }
             else
             {
-                GetComponent<Mover>().Cancel();
-                AttackBehaviour();
+                GetComponent<Mover>().Cancel(); //已進入攻擊範圍，停止移動
+                AttackBehaviour(); //開始攻擊
                 
             }
         }
-        private bool GetIsInRange()
+        private bool GetIsInRange()  //是否進入攻擊範圍
         {
             return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
         }
