@@ -76,7 +76,7 @@ namespace RPG.Combat
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
         }
-        public void Attack(GameObject combatTarget)
+        public void Attack(GameObject combatTarget)  //¥ÑPlayerController ©Î AIController©I¥s
         {
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
