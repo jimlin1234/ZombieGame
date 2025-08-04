@@ -38,7 +38,7 @@ namespace RPG.Controller
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             foreach(RaycastHit hit in hits)
             {
-               CombatTarget target =  hit.transform.GetComponent<CombatTarget>(); //取得擁有CombatTarget組件的hit
+                CombatTarget target =  hit.transform.GetComponent<CombatTarget>(); //取得擁有CombatTarget組件的hit
                 if(target == null) continue;
                 GameObject targetGameObject = target.gameObject;
                 if (!GetComponent<Fighter>().CanAttack(targetGameObject)) continue;
