@@ -39,7 +39,7 @@ namespace RPG.Movement
             navMeshAgent.isStopped = false;
         }
 
-        public void Cancel() //實作IAction介面的Cancel方法
+        public void Cancel() //實作IAction介面的Cancel方法   Mover 及 Fighter都有繼承，所以都要實作此方法
         {
             navMeshAgent.isStopped = true;
         }
