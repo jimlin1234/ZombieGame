@@ -40,7 +40,7 @@ namespace RPG.Controller
             {
                 CombatTarget target =  hit.transform.GetComponent<CombatTarget>(); //取得擁有CombatTarget組件的hit
                 if(target == null) continue;
-                GameObject targetGameObject = target.gameObject;
+                GameObject targetGameObject = target.gameObject; //將被hit到的擁有CombatTarget組件的target 轉為 GameObject
                 if (!GetComponent<Fighter>().CanAttack(targetGameObject)) continue;
 
                 if (Input.GetMouseButtonDown(0))
