@@ -74,7 +74,7 @@ namespace RPG.Combat
             if(combatTarget == null) return false;
             //if(!combatTarget.GetComponent<Health>()) return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
-            return targetToTest != null && !targetToTest.IsDead();
+            return targetToTest != null && !targetToTest.IsDead(); //Health物件不是空的 且 沒有死亡  回傳ture
         }
         public void Attack(GameObject combatTarget)  //由PlayerController 或 AIController呼叫
         {
