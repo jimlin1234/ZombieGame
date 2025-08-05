@@ -41,5 +41,11 @@ namespace RPG.Controller
             float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
             return distanceToPlayer < chaseDistance;  //如果player 與 Enemy的距離小於chaseDistance則回傳true
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position,chaseDistance);
+        }
     }
 }
