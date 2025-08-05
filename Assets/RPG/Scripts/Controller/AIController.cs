@@ -1,5 +1,6 @@
 using RPG.Combat;
 using RPG.Core;
+using RPG.Movement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,13 +14,19 @@ namespace RPG.Controller
 
         GameObject player;
         Fighter fighter;
+        Mover mover;
         Health health;
+
+        Vector3 guardPosition; //警衛原本位置
 
         private void Start()
         {
             player = GameObject.FindWithTag("Player");
             fighter = GetComponent<Fighter>();
+            mover = GetComponent<Mover>();
             health = GetComponent<Health>();
+
+            guardPosition = transform.position; //一開始賦予警衛原本的位置(警衛要返回的地方)
         }
         private void Update()
         {
@@ -31,7 +38,8 @@ namespace RPG.Controller
             }
             else
             {
-                fighter.Cancel();
+                //fighter.Cancel();
+                mover.StartMoveAction(guardPosition); //警衛返回
             }
         }
 
