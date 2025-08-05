@@ -1215,6 +1215,10 @@ PrefabInstance:
       propertyPath: chaseDistance
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2957563497370775721, guid: 28385eec5c19e7744b031715e0a2b293, type: 3}
+      propertyPath: suspicionTime
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3208381242420187640, guid: 28385eec5c19e7744b031715e0a2b293, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.3702464
