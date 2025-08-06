@@ -19,7 +19,7 @@ namespace RPG.Controller
         Health health;
 
         Vector3 guardPosition; //敵人原本位置
-        float timeSinceLastSawPlayer = Mathf.Infinity; //敵人上次最後追擊(看見)player的時間
+        float timeSinceLastSawPlayer = Mathf.Infinity; //敵人上次最後追擊(看見)player的經過時間(再次看見會歸0)
 
         private void Start()
         {
