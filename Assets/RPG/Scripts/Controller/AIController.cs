@@ -32,8 +32,6 @@ namespace RPG.Controller
         }
         private void Update()
         {
-            timeSinceLastSawPlayer += Time.deltaTime;
-
             if(health.IsDead()) return;
             
             if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
@@ -53,7 +51,7 @@ namespace RPG.Controller
                 //¼Ä¤Hªð¦^
                 GuardBehaviour();
             }
-
+            timeSinceLastSawPlayer += Time.deltaTime;
         }
         private void AttackBehaviour()
         {
