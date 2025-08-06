@@ -6,16 +6,13 @@ namespace RPG.Controller
 {
     public class PatrolPath : MonoBehaviour
     {
-        private int wayPoints;
-        private void Start()
-        {
-            wayPoints = transform.childCount;
-        }
+        
         private void OnDrawGizmos()
         {
-            for (int i = 0; i < wayPoints; i++)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                print(i);
+                Gizmos.color = Color.red;
+                Gizmos.DrawSphere(transform.GetChild(i).position,0.3f);
             }
         }
     }
