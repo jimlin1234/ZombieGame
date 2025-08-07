@@ -1,6 +1,7 @@
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,9 @@ namespace RPG.Controller
     {
         [SerializeField] float chaseDistance = 5.0f; //敵人開始追擊player的距離
         [SerializeField] float suspicionTime = 8.0f; //敵人懷疑時間
+        [SerializeField] PatrolPath patrolPath; //敵人巡邏路徑
+        [SerializeField] float wayPointTolerance = 1f;
+        int currentWayPointIndex = 0;
 
         GameObject player;
         Fighter fighter;
@@ -48,8 +52,8 @@ namespace RPG.Controller
             else
             {
                 //fighter.Cancel();
-                //敵人返回
-                GuardBehaviour();
+                //敵人返回至巡邏行為
+                PatrolBehaviour();
             }
             timeSinceLastSawPlayer += Time.deltaTime;
         }
@@ -62,10 +66,42 @@ namespace RPG.Controller
             GetComponent<ActionScheduler>().CancelCurrentAction();
         }
 
-        private void GuardBehaviour()
+        private void PatrolBehaviour()
         {
-            mover.StartMoveAction(guardPosition);
+            Vector3 nextPostion = guardPosition;
+            if(patrolPath != null)
+            {
+                if (AtWayPoint())
+                {
+                    CycleWayPoint();
+                }
+                nextPostion = GetCurrentWayPoint();
+            }
+            mover.StartMoveAction(nextPostion);
         }
+        private bool AtWayPoint()
+        {
+            float distanceToWayPoint = Vector3.Distance(transform.position, GetCurrentWayPoint());
+            if (distanceToWayPoint < wayPointTolerance)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private void CycleWayPoint()
+        {
+            currentWayPointIndex = patrolPath.GetNextIndex(currentWayPointIndex);
+        }
+
+        private Vector3 GetCurrentWayPoint()
+        {
+            return patrolPath.GetWayPoint(currentWayPointIndex);
+        }
+
+
 
         private bool InAttackRangeOfPlayer()  //Player進入敵人警戒範圍
         {
