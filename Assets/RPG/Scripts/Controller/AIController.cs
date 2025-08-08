@@ -68,6 +68,7 @@ namespace RPG.Controller
 
         private void PatrolBehaviour()
         {
+            //print(currentWayPointIndex);
             Vector3 nextPostion = guardPosition;
             if(patrolPath != null) //如果存在巡邏路徑
             {
