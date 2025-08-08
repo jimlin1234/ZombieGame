@@ -69,7 +69,7 @@ namespace RPG.Controller
         private void PatrolBehaviour()
         {
             Vector3 nextPostion = guardPosition;
-            if(patrolPath != null)
+            if(patrolPath != null) //如果存在巡邏路徑
             {
                 if (AtWayPoint())
                 {
@@ -82,9 +82,9 @@ namespace RPG.Controller
         private bool AtWayPoint()
         {
             float distanceToWayPoint = Vector3.Distance(transform.position, GetCurrentWayPoint());
-            if (distanceToWayPoint < wayPointTolerance)
+            if (distanceToWayPoint < wayPointTolerance) //是否已到達wayPoint(敵人距離wayPoint小於1即為已到達)
             {
-                return true;
+                return true; //已到達wayPoint
             }
             else
             {
@@ -96,7 +96,7 @@ namespace RPG.Controller
             currentWayPointIndex = patrolPath.GetNextIndex(currentWayPointIndex);
         }
 
-        private Vector3 GetCurrentWayPoint()
+        private Vector3 GetCurrentWayPoint() //取得要到的wayPoint位置
         {
             return patrolPath.GetWayPoint(currentWayPointIndex);
         }
