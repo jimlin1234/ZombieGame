@@ -80,7 +80,7 @@ namespace RPG.Controller
             }
             mover.StartMoveAction(nextPostion);
         }
-        private bool AtWayPoint()
+        private bool AtWayPoint() //是否在巡航點上了
         {
             float distanceToWayPoint = Vector3.Distance(transform.position, GetCurrentWayPoint());
             if (distanceToWayPoint < wayPointTolerance) //是否已到達wayPoint(敵人距離wayPoint小於1即為已到達)
