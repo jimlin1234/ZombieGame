@@ -16,6 +16,7 @@ namespace RPG.Controller
         [SerializeField] PatrolPath patrolPath; //敵人巡邏路徑
         [SerializeField] float wayPointTolerance = 1f;
         int currentWayPointIndex = 0;
+        [SerializeField] float patrolSuspicionTime = 3f; //敵人至巡邏點的張望時間
 
         GameObject player;
         Fighter fighter;
@@ -24,7 +25,7 @@ namespace RPG.Controller
 
         Vector3 guardPosition; //敵人原本位置
         float timeSinceLastSawPlayer = Mathf.Infinity; //敵人上次最後追擊(看見)player的經過時間(再次看見會歸0)
-
+        float timeSinceArrivedAtWayPoint = Mathf.Infinity;
         private void Start()
         {
             player = GameObject.FindWithTag("Player");
@@ -40,7 +41,6 @@ namespace RPG.Controller
             
             if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
             {
-                timeSinceLastSawPlayer = 0;
                 //Player進入敵人警戒範圍而攻擊Player
                 AttackBehaviour();
             }
@@ -56,9 +56,11 @@ namespace RPG.Controller
                 PatrolBehaviour();
             }
             timeSinceLastSawPlayer += Time.deltaTime;
+            timeSinceArrivedAtWayPoint += Time.deltaTime;
         }
         private void AttackBehaviour()
         {
+            timeSinceLastSawPlayer = 0;
             fighter.Attack(player);
         }
         private void SuspicionBehaviour()
@@ -74,11 +76,15 @@ namespace RPG.Controller
             {
                 if (AtWayPoint())
                 {
+                    timeSinceArrivedAtWayPoint = 0;
                     CycleWayPoint();
                 }
                 nextPostion = GetCurrentWayPoint();
             }
-            mover.StartMoveAction(nextPostion);
+            if(timeSinceArrivedAtWayPoint > patrolSuspicionTime)
+            {
+                mover.StartMoveAction(nextPostion);
+            }
         }
         private bool AtWayPoint() //是否在巡航點上了
         {
