@@ -24,7 +24,7 @@ namespace RPG.Combat
                 //bool isInRange = GetIsInRange();
             if (!GetIsInRange()) //未進入攻擊範圍
             {
-                GetComponent<Mover>().MoveTo(target.transform.position);  //繼續往目標移動
+                GetComponent<Mover>().MoveTo(target.transform.position, 1f);  //繼續往目標移動
             }
             else
             {

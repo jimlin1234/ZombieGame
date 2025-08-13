@@ -783,6 +783,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 633149574}
     m_Modifications:
+    - target: {fileID: 1316180073069561139, guid: 28385eec5c19e7744b031715e0a2b293, type: 3}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2460512875943132999, guid: 28385eec5c19e7744b031715e0a2b293, type: 3}
       propertyPath: m_Speed
       value: 4
@@ -1038,6 +1042,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 633149574}
     m_Modifications:
+    - target: {fileID: 1316180073069561139, guid: 28385eec5c19e7744b031715e0a2b293, type: 3}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2957563497370775721, guid: 28385eec5c19e7744b031715e0a2b293, type: 3}
       propertyPath: chaseDistance
       value: 10
@@ -1482,6 +1490,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 633149574}
     m_Modifications:
+    - target: {fileID: 1316180073069561139, guid: 28385eec5c19e7744b031715e0a2b293, type: 3}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2460512875943132999, guid: 28385eec5c19e7744b031715e0a2b293, type: 3}
       propertyPath: m_Speed
       value: 2
@@ -1559,6 +1571,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 633149574}
     m_Modifications:
+    - target: {fileID: 1316180073069561139, guid: 28385eec5c19e7744b031715e0a2b293, type: 3}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2957563497370775721, guid: 28385eec5c19e7744b031715e0a2b293, type: 3}
       propertyPath: chaseDistance
       value: 6
@@ -2592,6 +2608,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 633149574}
     m_Modifications:
+    - target: {fileID: 1316180073069561139, guid: 28385eec5c19e7744b031715e0a2b293, type: 3}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2460512875943132999, guid: 28385eec5c19e7744b031715e0a2b293, type: 3}
       propertyPath: m_Speed
       value: 3

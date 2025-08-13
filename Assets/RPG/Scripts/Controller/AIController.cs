@@ -18,6 +18,9 @@ namespace RPG.Controller
         int currentWayPointIndex = 0;
         [SerializeField] float patrolSuspicionTime = 3f; //敵人至巡邏點的張望時間
 
+        [Range(0,1)]
+        [SerializeField] float patrolSpeedFraction = 0.2f; //敵人巡邏速度數值
+
         GameObject player;
         Fighter fighter;
         Mover mover;
@@ -83,7 +86,7 @@ namespace RPG.Controller
             }
             if(timeSinceArrivedAtWayPoint > patrolSuspicionTime)
             {
-                mover.StartMoveAction(nextPostion);
+                mover.StartMoveAction(nextPostion, patrolSpeedFraction);
             }
         }
         private bool AtWayPoint() //是否在巡航點上了
