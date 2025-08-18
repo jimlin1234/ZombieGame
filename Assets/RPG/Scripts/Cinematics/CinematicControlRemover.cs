@@ -12,7 +12,11 @@ namespace RPG.Cinematics
             GetComponent<PlayableDirector>().played += DisableControl;
             GetComponent<PlayableDirector>().stopped += EnableControl;
 
+            ///
+            ///´ú¸ÕEvent
+            ///
             GetComponent<TestEvent>().testFunction += Test;
+            GetComponent<TestEvent>().testFunction2 += Test2;
         }
         void DisableControl(PlayableDirector pd)
         {
@@ -24,9 +28,19 @@ namespace RPG.Cinematics
             print("EnableControl");
         }
 
+
+        /// <summary>
+        /// ´ú¸ÕEvent
+        /// </summary>
+        /// <param name="a">´ú¸ÕEvent</param>
         void Test(float a)
         {
             print("456789");
+        }
+
+        void Test2(float b)
+        {
+            print("AAAAAA");
         }
     }
 }
