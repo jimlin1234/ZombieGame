@@ -17,6 +17,8 @@ namespace RPG.Cinematics
             ///
             GetComponent<TestEvent>().testFunction += Test;
             GetComponent<TestEvent>().testFunction2 += Test2;
+            GetComponent<TestEvent>().testFunction3 += Test3;
+            ////////////////
         }
         void DisableControl(PlayableDirector pd)
         {
@@ -42,5 +44,11 @@ namespace RPG.Cinematics
         {
             print("AAAAAA");
         }
+
+        void Test3()
+        {
+            print("BBBBB");
+        }
+        //////////////////////////////////
     }
 }

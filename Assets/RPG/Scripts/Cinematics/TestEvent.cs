@@ -9,11 +9,13 @@ namespace RPG.Cinematics
     {
         public event Action<float> testFunction;
         public event Action<float> testFunction2;
+        public event Action testFunction3;
 
         private void Start()
         {
             Invoke("TestFunction", 10f);
             Invoke("TestFunction2", 5.0f);
+            Invoke("TestFunction3", 2.0f);
             //TestFunction();
         }
         void TestFunction()
@@ -25,6 +27,11 @@ namespace RPG.Cinematics
         void TestFunction2()
         {
             testFunction2(2.2f);
+        }
+
+        void TestFunction3()
+        {
+            testFunction3();
         }
     }
 }
