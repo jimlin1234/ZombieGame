@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace RPG.Cinematics
 {
+    /// <summary>
+    /// ´ú¸Õevent¥Î
+    /// </summary>
     public class TestEvent : MonoBehaviour
     {
         public event Action<float> testFunction;

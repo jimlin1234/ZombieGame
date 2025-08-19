@@ -9,8 +9,8 @@ namespace RPG.Cinematics
     {
         private void Start()
         {
-            GetComponent<PlayableDirector>().played += DisableControl;  //將DisableControl()註冊到played事件
-            GetComponent<PlayableDirector>().stopped += EnableControl;  //EnableControl()註冊到stopped事件
+            GetComponent<PlayableDirector>().played += DisableControl;  //將DisableControl()註冊到played事件  (當開始播放(play)時，關閉對Player的控制)
+            GetComponent<PlayableDirector>().stopped += EnableControl;  //EnableControl()註冊到stopped事件  (當結束播放(stop)時，開啟對Player的控制)
 
             ///
             ///測試Event
