@@ -7,11 +7,12 @@ namespace RPG.Core
 {
     public class Portal : MonoBehaviour
     {
+        [SerializeField] int sceneToLoad = -1;
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player")
             {
-                SceneManager.LoadScene("SandBox2");
+                SceneManager.LoadScene(sceneToLoad);
             }
         }
     }
