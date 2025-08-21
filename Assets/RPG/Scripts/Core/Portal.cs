@@ -13,7 +13,6 @@ namespace RPG.Core
             {
                 SceneManager.LoadScene("SandBox2");
             }
-            
         }
     }
 }
