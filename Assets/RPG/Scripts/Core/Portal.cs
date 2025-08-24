@@ -20,13 +20,13 @@ namespace RPG.Core
 
         private IEnumerator Transition()
         {
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);//切換場景時不刪除物件(此入口)
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
 
             Portal otherPortal = GetOtherPortal();
             UpdatePlayer(otherPortal);
 
-            Destroy(gameObject);
+            Destroy(gameObject);//切換場景後刪除物件(此入口)
         }
 
         private void UpdatePlayer(Portal otherPortal)
