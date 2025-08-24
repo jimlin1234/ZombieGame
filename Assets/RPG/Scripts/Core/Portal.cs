@@ -8,8 +8,8 @@ namespace RPG.Core
 {
     public class Portal : MonoBehaviour
     {
-        [SerializeField] int sceneToLoad = -1;
-        [SerializeField] Transform spawnPoint;
+        [SerializeField] int sceneToLoad = -1; //scene index
+        [SerializeField] Transform spawnPoint; //轉場後player生成點
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player")
