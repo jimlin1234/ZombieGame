@@ -23,11 +23,13 @@ namespace RPG.Core
 
         private IEnumerator Transition()
         {
+            //前場景...
             DontDestroyOnLoad(gameObject);//切換場景時不刪除物件(此入口)，否則載入新場景後此物件會消失就無法從此物件帶入資料
             yield return SceneManager.LoadSceneAsync(sceneToLoad); //非同步載入新場景
-            
+
+            //後場景...
             Portal otherPortal = GetOtherPortal(); //場景載入後，尋找新場景中的另一個 Portal
-            UpdatePlayer(otherPortal);
+            UpdatePlayer(otherPortal); //更新玩家位置到新場景的 Portal 生成點
 
             Destroy(gameObject);//切換場景後並帶入資料後刪除物件(此入口)
         }
