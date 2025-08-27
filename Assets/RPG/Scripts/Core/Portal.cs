@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 namespace RPG.Core
@@ -11,8 +12,14 @@ namespace RPG.Core
     /// </summary>
     public class Portal : MonoBehaviour
     {
+        enum DestinationIdentifier //枚舉，用於識別不同的傳送門
+        {
+            A, B, C, D, E
+        }
+
         [SerializeField] int sceneToLoad = -1; //scene index
         [SerializeField] Transform spawnPoint; //轉場後player生成點
+        [SerializeField] DestinationIdentifier destination; //傳送門識別符
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player")
@@ -37,15 +44,18 @@ namespace RPG.Core
         private void UpdatePlayer(Portal otherPortal)
         {
             GameObject player = GameObject.FindWithTag("Player");
+            player.GetComponent<NavMeshAgent>().enabled = false; //關閉NavMeshAgent，避免直接設定位置時產生衝突
             player.transform.position = otherPortal.spawnPoint.position;
             player.transform.rotation = otherPortal.spawnPoint.rotation;
+            player.GetComponent<NavMeshAgent>().enabled = true; //重新啟用NavMeshAgent
         }
 
         private Portal GetOtherPortal() 
         {
            foreach(Portal portal in FindObjectsOfType<Portal>())
             {
-                if (portal == this) continue;
+                if (portal == this) continue; //假如是自己就繼續找
+                if (portal.destination != this.destination) continue; //假如傳送門識別符不一致就繼續找
                 return portal;
             }
            return null;
