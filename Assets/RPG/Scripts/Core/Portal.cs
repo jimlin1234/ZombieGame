@@ -9,6 +9,7 @@ namespace RPG.Core
 {
     /// <summary>
     /// 此程式碼讓玩家進入 Portal 後，非同步切換到指定場景，並將玩家角色移動到新場景的 Portal 生成點，確保轉場過程流暢且玩家位置正確。
+    /// 幫各傳送門設定相對的識別符號(destination)，以便在新場景中找到對應的傳送門。
     /// </summary>
     public class Portal : MonoBehaviour
     {
@@ -17,7 +18,7 @@ namespace RPG.Core
             A, B, C, D, E
         }
 
-        [SerializeField] int sceneToLoad = -1; //scene index
+        [SerializeField] int sceneToLoad = -1; //scene index 場景識別符
         [SerializeField] Transform spawnPoint; //轉場後player生成點
         [SerializeField] DestinationIdentifier destination; //傳送門識別符
         private void OnTriggerEnter(Collider other)
