@@ -6,6 +6,7 @@ using UnityEngine;
 namespace RPG.SceneMangement
 {
     /// <summary>
+    /// 整個遊戲都一致的淡入淡出效果，所以做成singleton單例模式
     /// 此程式碼用於實現螢幕淡入淡出效果，通常用於場景切換或重要事件發生時，以提升使用者體驗。
     /// </summary>
     public class Fader : MonoBehaviour
