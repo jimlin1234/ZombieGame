@@ -1,3 +1,4 @@
+using RPG.SceneMangement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,10 @@ namespace RPG.Core
         [SerializeField] int sceneToLoad = -1; //scene index 場景識別符
         [SerializeField] Transform spawnPoint; //轉場後player生成點
         [SerializeField] DestinationIdentifier destination; //傳送門識別符
+
+        [SerializeField] float fadeOutTime = 2.0f;
+        [SerializeField] float fadeInTime = 1.0f;
+        [SerializeField] float fadeWaitTime = 0.5f;
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player")
@@ -33,12 +38,15 @@ namespace RPG.Core
         {
             //前場景...
             DontDestroyOnLoad(gameObject);//切換場景時不刪除物件(此入口)，否則載入新場景後此物件會消失就無法從此物件帶入資料
+            Fader fader = FindObjectOfType<Fader>();//取得Fader物件
+            yield return fader.FadeOut(fadeOutTime); //淡出螢幕
             yield return SceneManager.LoadSceneAsync(sceneToLoad); //非同步載入新場景
-
+            
             //後場景...
             Portal otherPortal = GetOtherPortal(); //場景載入後，尋找新場景中的另一個 Portal
             UpdatePlayer(otherPortal); //更新玩家位置到新場景的 Portal 生成點
-
+            yield return new WaitForSeconds(fadeWaitTime); //等待一段時間
+            yield return fader.FadeIn(fadeInTime); //淡入螢幕
             Destroy(gameObject);//切換場景後並帶入資料後刪除物件(此入口)
         }
 
