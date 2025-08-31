@@ -54,7 +54,7 @@ namespace RPG.Core
         {
             GameObject player = GameObject.FindWithTag("Player");
             player.GetComponent<NavMeshAgent>().enabled = false; //關閉NavMeshAgent，避免直接設定位置時產生衝突
-            player.transform.position = otherPortal.spawnPoint.position;
+            player.transform.position = otherPortal.spawnPoint.position; 
             player.transform.rotation = otherPortal.spawnPoint.rotation;
             player.GetComponent<NavMeshAgent>().enabled = true; //重新啟用NavMeshAgent
         }
