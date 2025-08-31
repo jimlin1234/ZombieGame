@@ -1,5 +1,6 @@
 using RPG.Combat;
 using RPG.Core;
+using RPG.Saving;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine.AI;
 
 namespace RPG.Movement
 {
-    public class Mover : MonoBehaviour,IAction
+    public class Mover : MonoBehaviour,IAction,ISaveable
     {
         [SerializeField] float maxSpeed = 6f;
 
@@ -57,5 +58,17 @@ namespace RPG.Movement
             GetComponent<Animator>().SetFloat("ForwardSpeed", speed);
         }
 
+        public object CaptureState() //實作ISaveable介面的CaptureState方法
+        {
+            return new SerializableVector3(transform.position);
+        }
+
+        public void RestoreState(object state) //實作ISaveable介面的RestoreState方法
+        {
+            SerializableVector3 position = (SerializableVector3)state;
+            GetComponent<NavMeshAgent>().enabled = false; //關掉NavMeshAgent才能直接設定位置
+            transform.position = position.ToVector();
+            GetComponent<NavMeshAgent>().enabled = true; //重新啟用NavMeshAgent
+        }
     }
 }

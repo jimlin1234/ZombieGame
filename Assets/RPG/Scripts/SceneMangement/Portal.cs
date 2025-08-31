@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
-namespace RPG.Core
+namespace RPG.SceneMangement
 {
     /// <summary>
     /// 此程式碼讓玩家進入 Portal 後，非同步切換到指定場景，並將玩家角色移動到新場景的 Portal 生成點，確保轉場過程流暢且玩家位置正確。
