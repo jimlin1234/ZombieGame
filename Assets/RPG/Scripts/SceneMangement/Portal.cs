@@ -45,6 +45,7 @@ namespace RPG.SceneMangement
             //後場景...
             Portal otherPortal = GetOtherPortal(); //場景載入後，尋找新場景中的另一個 Portal
             UpdatePlayer(otherPortal); //更新玩家位置到新場景的 Portal 生成點
+
             yield return new WaitForSeconds(fadeWaitTime); //等待一段時間
             yield return fader.FadeIn(fadeInTime); //淡入螢幕
             Destroy(gameObject);//切換場景後並帶入資料後刪除物件(此入口)
