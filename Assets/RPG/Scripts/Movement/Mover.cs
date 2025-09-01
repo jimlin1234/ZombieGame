@@ -8,7 +8,7 @@ using UnityEngine.AI;
 
 namespace RPG.Movement
 {
-    public class Mover : MonoBehaviour,IAction,ISaveable
+    public class Mover : MonoBehaviour,IAction
     {
         [SerializeField] float maxSpeed = 6f;
 
@@ -57,7 +57,7 @@ namespace RPG.Movement
             float speed = localVelocity.z;
             GetComponent<Animator>().SetFloat("ForwardSpeed", speed);
         }
-
+        /*
         public object CaptureState() //實作ISaveable介面的CaptureState方法
         {
             return new SerializableVector3(transform.position);
@@ -70,5 +70,6 @@ namespace RPG.Movement
             transform.position = position.ToVector();
             GetComponent<NavMeshAgent>().enabled = true; //重新啟用NavMeshAgent
         }
+        */
     }
 }

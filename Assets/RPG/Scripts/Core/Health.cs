@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RPG.Core
 {
-    public class Health : MonoBehaviour,ISaveable
+    public class Health : MonoBehaviour
     {
         [SerializeField] float healthPoints = 100f;
 
@@ -40,7 +40,7 @@ namespace RPG.Core
             GetComponent<ActionScheduler>().CancelCurrentAction();
             //GetComponent<Collider>().enabled = false;
         }
-
+        /*
         public object CaptureState()
         {
             return healthPoints;
@@ -53,5 +53,6 @@ namespace RPG.Core
                 Die();
             }
         }
+        */
     }
 }

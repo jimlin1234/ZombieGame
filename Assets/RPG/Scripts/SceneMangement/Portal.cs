@@ -40,13 +40,15 @@ namespace RPG.SceneMangement
             DontDestroyOnLoad(gameObject);//切換場景時不刪除物件(此入口)，否則載入新場景後此物件會消失就無法從此物件帶入資料
             Fader fader = FindObjectOfType<Fader>();//取得Fader物件
             yield return fader.FadeOut(fadeOutTime); //淡出螢幕
-
+            /*
             SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
             savingWrapper.Save(); //切換場景前先存檔
-
+            */
             yield return SceneManager.LoadSceneAsync(sceneToLoad); //非同步載入新場景
-            
+
+            /*
             savingWrapper.Load(); //載入新場景後讀取存檔
+            */
 
             //後場景...
             Portal otherPortal = GetOtherPortal(); //場景載入後，尋找新場景中的另一個 Portal
