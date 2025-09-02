@@ -19,7 +19,7 @@ namespace RPG.NewSaving
             using (FileStream stream = File.Open(path, FileMode.Create)) //FileMode.Create  創造一個新文件(return FileStream)，如果有了就覆蓋
             {
                 byte[] bytes = Encoding.UTF8.GetBytes("Hello Word!!!");
-                stream.Write(bytes, 0, bytes.Length);
+                stream.Write(bytes, 0, bytes.Length); 
             }
            
             //stream.Close();
@@ -27,8 +27,19 @@ namespace RPG.NewSaving
 
         public void Load(string saveFile)
         {
-            print("Loading from " + GetPathFromSaveFile(saveFile));
+            string path = GetPathFromSaveFile(saveFile);
+            print("Loading from " + path);
 
+            using (FileStream stream = File.Open(path, FileMode.Open))
+            {
+                byte[] buffer = new byte[stream.Length];//宣告一個byte陣列,長度為stream的長度
+                stream.Read(buffer, 0, buffer.Length); //Read(讀取資料到buffer陣列,從第0個位置開始放,放多少個byte)
+
+                print(Encoding.UTF8.GetString(buffer));
+
+            }
+            //FileStream stream = File.Open(path, FileMode.Open); //FileMode.Open 以開啟一個已存在的文件
+            
         }
 
         private string GetPathFromSaveFile(string saveFile)
