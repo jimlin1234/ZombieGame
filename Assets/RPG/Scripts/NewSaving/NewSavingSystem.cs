@@ -22,10 +22,10 @@ namespace RPG.NewSaving
                 Transform playerTransform = GetPlayerTransform();
                 //byte[] buffer = SerializeVector(playerTransform.position);
 
-                BinaryFormatter formatter = new BinaryFormatter();
-                NewSerializableVector3 position = new NewSerializableVector3(playerTransform.position);
-                formatter.Serialize(stream, position);
-                
+                BinaryFormatter formatter = new BinaryFormatter(); 
+                NewSerializableVector3 position = new NewSerializableVector3(playerTransform.position); //將Vector3轉成NewSerializableVector3物件
+                formatter.Serialize(stream, position); //將position物件序列化後寫入stream
+
 
 
                 //byte[] bytes = Encoding.UTF8.GetBytes("Hello Word!!!"); //將字串轉成byte陣列
