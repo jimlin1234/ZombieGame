@@ -20,14 +20,16 @@ namespace RPG.NewSaving
             using (FileStream stream = File.Open(path, FileMode.Create)) //FileMode.Create  創造一個新文件(return FileStream)，如果有了就覆蓋
             {
                 Transform playerTransform = GetPlayerTransform();
-                byte[] buffer = SerializeVector(playerTransform.position);
+                //byte[] buffer = SerializeVector(playerTransform.position);
 
                 BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(stream, playerTransform.position);
+                NewSerializableVector3 position = new NewSerializableVector3(playerTransform.position);
+                formatter.Serialize(stream, position);
+                
 
 
                 //byte[] bytes = Encoding.UTF8.GetBytes("Hello Word!!!"); //將字串轉成byte陣列
-                stream.Write(buffer, 0, buffer.Length); 
+                //stream.Write(buffer, 0, buffer.Length); 
             }
            
             //stream.Close();
