@@ -1,3 +1,4 @@
+using RPG.Movement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,14 +45,17 @@ namespace RPG.NewSaving
 
             using (FileStream stream = File.Open(path, FileMode.Open))
             {
-                byte[] buffer = new byte[stream.Length];//宣告一個byte陣列,長度為stream的長度
-                stream.Read(buffer, 0, buffer.Length); //Read(讀取資料到buffer陣列,從第0個位置開始放,放多少個byte)
-
+                //byte[] buffer = new byte[stream.Length];//宣告一個byte陣列,長度為stream的長度
+                //stream.Read(buffer, 0, buffer.Length); //Read(讀取資料到buffer陣列,從第0個位置開始放,放多少個byte)
+                BinaryFormatter formatter = new BinaryFormatter();
                 //print(Encoding.UTF8.GetString(buffer));
                 //print(DeserializeVector(buffer));
                 Transform playerTransform = GetPlayerTransform();
-                playerTransform.position = DeserializeVector(buffer);
-
+                NewSerializableVector3 position = (NewSerializableVector3)formatter.Deserialize(stream); //將stream反序列化成NewSerializableVector3物件
+                //playerTransform.position = DeserializeVector(buffer);
+                playerTransform.position = position.ToVector(); //將NewSerializableVector3物件轉成Vector3並設定給player位置
+                Mover mover = playerTransform.GetComponent<Mover>();
+                mover.Cancel(); //取消移動，避免載入位置後，角色繼續移動到之前設定的目標位置
             }
             //FileStream stream = File.Open(path, FileMode.Open); //FileMode.Open 以開啟一個已存在的文件
             
