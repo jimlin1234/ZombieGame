@@ -13,19 +13,19 @@ namespace RPG.NewSaving
     {
         public void Save(string saveFile)
         {
-            string path = GetPathFromSaveFile(saveFile);
+            string path = GetPathFromSaveFile(saveFile); //取得存檔路徑
             print("Saving to " + path);
 
-            //TODO:test write some data
+            
             //using陳述式:用於確保在某個程式區塊結束後，其管理的資源（如檔案流、資料庫連線等）能夠被正確地釋放. 它通常用來簡化 try-finally 區塊，但 不包含 catch 的錯誤處理部分. using 陳述式本質上是一個編譯器語法糖(syntax sugar)，它會被編譯成一個 try-finally 區塊.
             using (FileStream stream = File.Open(path, FileMode.Create)) //FileMode.Create  創造一個新文件(return FileStream)，如果有了就覆蓋
             {
-                Transform playerTransform = GetPlayerTransform();
+                //Transform playerTransform = GetPlayerTransform(); //取得玩家Transform
                 //byte[] buffer = SerializeVector(playerTransform.position);
 
                 BinaryFormatter formatter = new BinaryFormatter(); //建立BinaryFormatter物件
-                NewSerializableVector3 position = new NewSerializableVector3(playerTransform.position); //將Vector3轉成NewSerializableVector3物件
-                formatter.Serialize(stream, position); //將position物件序列化後寫入stream
+                //NewSerializableVector3 position = new NewSerializableVector3(playerTransform.position); //將Vector3轉成NewSerializableVector3物件
+                formatter.Serialize(stream, CaptureState()); //將position物件序列化後寫入stream
 
 
 
@@ -50,25 +50,51 @@ namespace RPG.NewSaving
                 BinaryFormatter formatter = new BinaryFormatter();
                 //print(Encoding.UTF8.GetString(buffer));
                 //print(DeserializeVector(buffer));
-                Transform playerTransform = GetPlayerTransform();
-                NewSerializableVector3 position = (NewSerializableVector3)formatter.Deserialize(stream); //將stream反序列化成NewSerializableVector3物件
+                //Transform playerTransform = GetPlayerTransform();
+                RestoryState(formatter.Deserialize(stream)); //將stream反序列化成NewSerializableVector3物件
                 //playerTransform.position = DeserializeVector(buffer);
-                playerTransform.position = position.ToVector(); //將NewSerializableVector3物件轉成Vector3並設定給player位置
-                Mover mover = playerTransform.GetComponent<Mover>();
-                mover.Cancel(); //取消移動，避免載入位置後，角色繼續移動到之前設定的目標位置
+                //playerTransform.position = position.ToVector(); //將NewSerializableVector3物件轉成Vector3並設定給player位置
+                
+                //Mover mover = playerTransform.GetComponent<Mover>();
+                //mover.Cancel(); //取消移動，避免載入位置後，角色繼續移動到之前設定的目標位置
             }
             //FileStream stream = File.Open(path, FileMode.Open); //FileMode.Open 以開啟一個已存在的文件
             
         }
+        private object CaptureState()
+        {
+            Dictionary<string, object> state = new Dictionary<string, object>(); //建立一個字典來存放狀態 例如:state["hello"] = 4;   state[key] = value
+            foreach (NewSaveableEntity newSaveable in FindObjectsOfType<NewSaveableEntity>())  //尋找場景中所有NewSaveableEntity物件
+            {
+                state[newSaveable.GetUniqueIdentifier()] = newSaveable.CaptureState(); //將每個NewSaveableEntity物件的狀態存放到字典中->state[key] = value
 
-        
+            }
+            return state;
+        }
 
+        private void RestoryState(object state)//將字典中的狀態還原給每個NewSaveableEntity物件
+        {
+            Dictionary<string, object> stateDict = (Dictionary<string, object>)state;
+            foreach (NewSaveableEntity newSaveable in FindObjectsOfType<NewSaveableEntity>())
+            {
+                newSaveable.RestoreState(stateDict[newSaveable.GetUniqueIdentifier()]); //將字典中的狀態還原給每個NewSaveableEntity物件
+            }
+        }
+
+        /*
         private Transform GetPlayerTransform()
         {
             return GameObject.FindWithTag("Player").transform;
         }
-
-
+        */
+        private string GetPathFromSaveFile(string saveFile)
+        {
+            //Application.persistentDataPath 為不同平台的路徑 (如 Windows, Mac, iOS, Android)
+            //Application.persistentDataPath提供了一個特定位置，開發者可以安全地儲存和讀取使用者持久數據，而這個位置在不同的平台上可能有所不同
+            //return Application.persistentDataPath + "/" + saveFile + ".sav"; 
+            return Path.Combine(Application.persistentDataPath, saveFile + ".sav");
+        }
+        /*
         private byte[] SerializeVector(Vector3 vector) //將Vector3轉成byte陣列 (序列化Vector3)
         {
             byte[] vectorBytes = new byte[3 * 4]; //3個float,每個float為4個byte
@@ -87,13 +113,6 @@ namespace RPG.NewSaving
 
             return result;
         }
-
-        private string GetPathFromSaveFile(string saveFile)
-        {
-            //Application.persistentDataPath 為不同平台的路徑 (如 Windows, Mac, iOS, Android)
-            //Application.persistentDataPath提供了一個特定位置，開發者可以安全地儲存和讀取使用者持久數據，而這個位置在不同的平台上可能有所不同
-            //return Application.persistentDataPath + "/" + saveFile + ".sav"; 
-            return Path.Combine(Application.persistentDataPath, saveFile + ".sav");
-        }
+        */
     }
 }
