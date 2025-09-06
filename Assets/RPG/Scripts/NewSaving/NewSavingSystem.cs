@@ -23,7 +23,7 @@ namespace RPG.NewSaving
                 Transform playerTransform = GetPlayerTransform();
                 //byte[] buffer = SerializeVector(playerTransform.position);
 
-                BinaryFormatter formatter = new BinaryFormatter(); 
+                BinaryFormatter formatter = new BinaryFormatter(); //建立BinaryFormatter物件
                 NewSerializableVector3 position = new NewSerializableVector3(playerTransform.position); //將Vector3轉成NewSerializableVector3物件
                 formatter.Serialize(stream, position); //將position物件序列化後寫入stream
 
