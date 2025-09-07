@@ -25,7 +25,7 @@ namespace RPG.NewSaving
 
                 BinaryFormatter formatter = new BinaryFormatter(); //建立BinaryFormatter物件
                 //NewSerializableVector3 position = new NewSerializableVector3(playerTransform.position); //將Vector3轉成NewSerializableVector3物件
-                formatter.Serialize(stream, CaptureState()); //將position物件序列化後寫入stream
+                formatter.Serialize(stream, CaptureState()); //將CaptureState()回傳的物件序列化並寫入stream
 
 
 
@@ -64,9 +64,9 @@ namespace RPG.NewSaving
         private object CaptureState()
         {
             Dictionary<string, object> state = new Dictionary<string, object>(); //建立一個字典來存放狀態 例如:state["hello"] = 4;   state[key] = value
-            foreach (NewSaveableEntity newSaveable in FindObjectsOfType<NewSaveableEntity>())  //尋找場景中所有NewSaveableEntity物件
+            foreach (NewSaveableEntity newSaveable in FindObjectsOfType<NewSaveableEntity>())  //尋找場景中所有掛有NewSaveableEntity的物件
             {
-                state[newSaveable.GetUniqueIdentifier()] = newSaveable.CaptureState(); //將每個NewSaveableEntity物件的狀態存放到字典中->state[key] = value
+                state[newSaveable.GetUniqueIdentifier()] = newSaveable.CaptureState(); //將每個NewSaveableEntity物件的狀態(value)存放到字典中->state[key] = value
 
             }
             return state;
